@@ -1,4 +1,5 @@
-const swiper = () => {
+const slider = () => {
+    
     const swiper = new Swiper ('.swiper', {
 
         effect: "fade",
@@ -13,4 +14,4 @@ const swiper = () => {
     })
     }
 
-swiper()
+slider()

@@ -1,6 +1,6 @@
 const scrollToTop = () => {
 
-    const topBtn = modal.querySelector('#scrollToTopButton')
+    const topBtn = document.querySelector('#scrollToTopButton')
 
     topBtn.addEventListener('click', (e) => {
 
