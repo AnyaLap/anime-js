@@ -1,17 +1,14 @@
 const scrollToTop = () => {
+    const topBtn = document.querySelector('#scrollToTopButton');
 
-    const topBtn = document.querySelector('#scrollToTopButton')
-
-    topBtn.addEventListener('click', (e) => {
-
-        e.preventDefault()
-
-        window.scrollIntoView(document.querySelector(".header"), {
+    topBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        seamless.scrollIntoView(document.querySelector(".header"), {
             behavior: "smooth",
             block: "center",
             inline: "center",
         });
-    })
-}
+    });
+};
 
-scrollToTop()
+scrollToTop();
