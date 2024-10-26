@@ -1,6 +1,6 @@
 const bgElements = () => {
 
-    const elements = document.querySelectorAll('.set-bg')
+    const elements = document.querySelectorAll('.set-bg');
 
     elements.forEach((element) => {
        
@@ -8,4 +8,4 @@ const bgElements = () => {
     });
 }
 
-bgElements()
+bgElements();

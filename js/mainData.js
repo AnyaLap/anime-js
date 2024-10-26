@@ -1,30 +1,30 @@
 
 const mainData = () => {
 
-    const preloader = document.querySelector('.preloder')
+    const preloader = document.querySelector('.preloder');
 
     const renderGanreList = (ganres) => {
-        const dropdownBlock = document.querySelector('.header__menu .dropdown')
+        const dropdownBlock = document.querySelector('.header__menu .dropdown');
 
         ganres.forEach(ganre => {
             dropdownBlock.insertAdjacentHTML('beforeend', `
                 <li><a href="./categories.html?ganre=${ganre}">${ganre}</a></li>    
-            `)
-        })
+            `);
+        });
 
-    }
+    };
     const renderAnimeList = (array, ganres) => {
 
-        const wrapper = document.querySelector('.product .col-lg-8')
+        const wrapper = document.querySelector('.product .col-lg-8');
 
         ganres.forEach((ganre) => {
 
-            const productBlock = document.createElement('div')
-            const listBlock = document.createElement('div')
-            const list = array.filter(item => item.ganre === ganre)
+            const productBlock = document.createElement('div');
+            const listBlock = document.createElement('div');
+            const list = array.filter(item => item.ganre === ganre);
 
-            listBlock.classList.add('row')
-            productBlock.classList.add('mb-5')
+            listBlock.classList.add('row');
+            productBlock.classList.add('mb-5');
 
 
             productBlock.insertAdjacentHTML('beforeend', `
@@ -40,20 +40,20 @@ const mainData = () => {
                         </div>
                     </div>
                 </div>
-            `)
+            `);
             
             list.forEach(item => {
 
-                const tagsBlock = document.createElement('ul')
+                const tagsBlock = document.createElement('ul');
 
                 item.tags.forEach(tag => {
 
                     tagsBlock.insertAdjacentHTML('beforeend', `
    
                         <li>${tag}</li>
-                    `)
+                    `);
 
-                })
+                });
                 listBlock.insertAdjacentHTML('beforeend', `
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
@@ -67,28 +67,28 @@ const mainData = () => {
                             </div>
                         </div>
                     </div>
-                `)
+                `);
 
-            })
+            });
         
-            productBlock.append(listBlock)
-            wrapper.append(productBlock)
+            productBlock.append(listBlock);
+            wrapper.append(productBlock);
 
             wrapper.querySelectorAll('.set-bg').forEach((element) => {
-                element.style.backgroundImage = `url(${element.dataset.setbg})`
-            })
-        })
+                element.style.backgroundImage = `url(${element.dataset.setbg})`;
+            });
+        });
         setTimeout(() => {
 
-            preloader.classList.remove('active')
+            preloader.classList.remove('active');
     
-        }, 500)
-    }
+        }, 500);
+    };
 
     const renderTopAnime = (array) => {
-        const wrapper = document.querySelector('.filter__gallery')
+        const wrapper = document.querySelector('.filter__gallery');
 
-        wrapper.innerHTML = ''
+        wrapper.innerHTML = '';
 
         array.forEach((item) => {
             wrapper.insertAdjacentHTML('beforeend', `
@@ -97,27 +97,27 @@ const mainData = () => {
                 <div class="view"><i class="fa fa-eye"></i>${item.views}</div>
                 <h5><a href="/anime-details.html">${item.title}</a></h5>
                 </div>
-            `)
-        })
+            `);
+        });
 
         wrapper.querySelectorAll('.set-bg').forEach((element) => {
-            element.style.backgroundImage = `url(${element.dataset.setbg})`
-        })
-    }
+            element.style.backgroundImage = `url(${element.dataset.setbg})`;
+        });
+    };
 
     fetch('https://anime-6f18c-default-rtdb.firebaseio.com/anime.json')
         .then((res) => res.json())
         .then((data) => {
-            const ganres = new Set()
+            const ganres = new Set();
 
             data.forEach((item) => {
                 ganres.add(item.ganre)
-            })
+            });
 
-            renderTopAnime(data.sort((a, b) => b.views - a.views).slice(0, 5))
-            renderAnimeList(data, ganres)
-            renderGanreList(ganres)
-        })
+            renderTopAnime(data.sort((a, b) => b.views - a.views).slice(0, 5));
+            renderAnimeList(data, ganres);
+            renderGanreList(ganres);
+        });
 };
 
 mainData();
